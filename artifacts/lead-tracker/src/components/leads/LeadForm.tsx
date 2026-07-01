@@ -22,6 +22,57 @@ interface LeadFormProps {
   isSubmitting?: boolean;
 }
 
+// ── FloatingInput must live OUTSIDE LeadForm so React never remounts it on re-render ──
+interface FloatingInputProps {
+  id: string;
+  name: string;
+  label: string;
+  value: string;
+  required?: boolean;
+  type?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  [key: string]: unknown;
+}
+
+function FloatingInput({
+  id, name, label, value, required = false, type = "text", onChange, ...props
+}: FloatingInputProps) {
+  const [focused, setFocused] = useState(false);
+  const active = focused || value.length > 0;
+
+  return (
+    <div className="relative group">
+      <label
+        htmlFor={id}
+        className={cn(
+          "absolute left-3 transition-all duration-200 pointer-events-none text-muted-foreground",
+          active
+            ? "-top-2.5 text-xs bg-card px-1 text-primary font-medium z-10"
+            : "top-3 text-sm"
+        )}
+      >
+        {label}{required && <span className="text-destructive"> *</span>}
+      </label>
+      <Input
+        id={id}
+        name={name}
+        type={type}
+        value={value}
+        required={required}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        onChange={onChange}
+        className={cn(
+          "h-12 bg-transparent transition-all",
+          focused ? "ring-2 ring-primary/20 border-primary" : "hover:border-primary/50"
+        )}
+        {...props}
+      />
+    </div>
+  );
+}
+
+// ── Main form component ──────────────────────────────────────────────────────
 export function LeadForm({ initialData, onSubmit, isEditing = false, isSubmitting = false }: LeadFormProps) {
   const [formData, setFormData] = useState({
     name: "",
@@ -62,9 +113,7 @@ export function LeadForm({ initialData, onSubmit, isEditing = false, isSubmittin
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     const budgetNum = formData.budget ? parseFloat(formData.budget) : undefined;
-    
     onSubmit({
       name: formData.name,
       businessName: formData.businessName,
@@ -78,45 +127,6 @@ export function LeadForm({ initialData, onSubmit, isEditing = false, isSubmittin
     });
   };
 
-  // Custom Floating Label Input Component
-  const FloatingInput = ({ 
-    id, name, label, value, required = false, type = "text", ...props 
-  }: any) => {
-    const [focused, setFocused] = useState(false);
-    const active = focused || value.length > 0;
-    
-    return (
-      <div className="relative group">
-        <label 
-          htmlFor={id}
-          className={cn(
-            "absolute left-3 transition-all duration-200 pointer-events-none text-muted-foreground",
-            active 
-              ? "-top-2.5 text-xs bg-card px-1 text-primary font-medium z-10" 
-              : "top-3 text-sm"
-          )}
-        >
-          {label} {required && <span className="text-destructive">*</span>}
-        </label>
-        <Input 
-          id={id}
-          name={name}
-          type={type}
-          value={value}
-          required={required}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          onChange={handleChange}
-          className={cn(
-            "h-12 bg-transparent transition-all",
-            focused ? "ring-2 ring-primary/20 border-primary" : "hover:border-primary/50"
-          )}
-          {...props}
-        />
-      </div>
-    );
-  };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-8 max-w-3xl">
       <Card className="shadow-sm border-t-4 border-t-primary rounded-2xl overflow-hidden">
@@ -125,22 +135,24 @@ export function LeadForm({ initialData, onSubmit, isEditing = false, isSubmittin
           <CardDescription>Required details to get this lead into the pipeline.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-2 pt-6">
-          <FloatingInput id="name" name="name" label="Contact Name" value={formData.name} required />
-          <FloatingInput id="businessName" name="businessName" label="Business Name" value={formData.businessName} required />
-          <FloatingInput id="service" name="service" label="Service Enquired" value={formData.service} required />
-          <FloatingInput id="owner" name="owner" label="Lead Owner" value={formData.owner} required />
-          
+          <FloatingInput id="name"         name="name"         label="Contact Name"      value={formData.name}         required onChange={handleChange} />
+          <FloatingInput id="businessName" name="businessName" label="Business Name"     value={formData.businessName} required onChange={handleChange} />
+          <FloatingInput id="service"      name="service"      label="Service Enquired"  value={formData.service}      required onChange={handleChange} />
+          <FloatingInput id="owner"        name="owner"        label="Lead Owner"        value={formData.owner}        required onChange={handleChange} />
+
           <div className="space-y-1.5 sm:col-span-2 relative group">
             <label className="absolute left-3 -top-2.5 text-xs bg-card px-1 text-primary font-medium z-10">
               Current Stage <span className="text-destructive">*</span>
             </label>
-            <Select value={formData.stage} onValueChange={handleStageChange} required>
+            <Select value={formData.stage} onValueChange={handleStageChange}>
               <SelectTrigger className="h-12 hover:border-primary/50 transition-colors focus:ring-2 focus:ring-primary/20">
                 <SelectValue placeholder="Select a stage" />
               </SelectTrigger>
               <SelectContent>
                 {STAGES.map((stage) => (
-                  <SelectItem key={stage} value={stage} className="font-medium cursor-pointer">{stage}</SelectItem>
+                  <SelectItem key={stage} value={stage} className="font-medium cursor-pointer">
+                    {stage}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -154,51 +166,51 @@ export function LeadForm({ initialData, onSubmit, isEditing = false, isSubmittin
           <CardDescription>Extra context helps close deals faster.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6 sm:grid-cols-2 pt-6">
-          <FloatingInput id="city" name="city" label="City Location" value={formData.city} />
-          <FloatingInput id="budget" name="budget" type="number" label="Est. Budget ($)" value={formData.budget} min="0" step="100" />
-          
+          <FloatingInput id="city"   name="city"   label="City Location"    value={formData.city}   onChange={handleChange} />
+          <FloatingInput id="budget" name="budget" label="Est. Budget ($)"  value={formData.budget} type="number" onChange={handleChange} min="0" step="100" />
+
           <div className="space-y-1.5 sm:col-span-2 relative">
             <label className="absolute left-3 -top-2.5 text-xs bg-card px-1 text-primary font-medium z-10">
               Follow-up Date
             </label>
-            <Input 
-              id="followUpDate" 
-              name="followUpDate" 
+            <Input
+              id="followUpDate"
+              name="followUpDate"
               type="date"
-              value={formData.followUpDate} 
+              value={formData.followUpDate}
               onChange={handleChange}
               className="h-12 hover:border-primary/50 transition-colors focus:ring-2 focus:ring-primary/20"
             />
           </div>
-          
+
           <div className="space-y-1.5 sm:col-span-2 relative group mt-2">
             <label className={cn(
               "absolute left-3 transition-all duration-200 pointer-events-none z-10",
-              formData.notes.length > 0 || document.activeElement?.id === "notes"
+              formData.notes.length > 0
                 ? "-top-2.5 text-xs bg-card px-1 text-primary font-medium"
                 : "top-3 text-sm text-muted-foreground"
             )}>
-              Notes & Context
+              Notes &amp; Context
             </label>
-            <Textarea 
-              id="notes" 
-              name="notes" 
-              value={formData.notes} 
-              onChange={handleChange} 
+            <Textarea
+              id="notes"
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
               className="min-h-[120px] pt-4 resize-none hover:border-primary/50 transition-colors focus:ring-2 focus:ring-primary/20"
             />
           </div>
         </CardContent>
       </Card>
 
-      <motion.div 
+      <motion.div
         className="flex justify-end gap-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <Button 
-          type="submit" 
-          size="lg" 
+        <Button
+          type="submit"
+          size="lg"
           className="px-8 rounded-full shadow-md font-semibold active:scale-95 transition-transform"
           disabled={isSubmitting}
         >
