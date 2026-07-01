@@ -179,7 +179,7 @@ export function Layout({ children, title }: LayoutProps) {
             
             <div className="flex items-center gap-3 ml-2 pl-4 border-l">
               <Avatar className="h-8 w-8 ring-2 ring-primary/20 cursor-pointer hover:ring-primary transition-all">
-                <AvatarFallback className="bg-primary/10 text-primary font-semibold text-xs">AS</AvatarFallback>
+                <AvatarFallback className="bg-primary/10 text-primary font-semibold text-xs">C</AvatarFallback>
               </Avatar>
               <span className="text-sm font-medium hidden sm:block">Chandru Sales</span>
             </div>
