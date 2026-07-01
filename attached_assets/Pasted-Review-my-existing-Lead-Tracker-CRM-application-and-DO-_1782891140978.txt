@@ -1,0 +1,349 @@
+Review my existing Lead Tracker CRM application and DO NOT rewrite or replace the existing functionality. Instead, transform the UI into a premium SaaS dashboard similar to HubSpot, Salesforce, Linear, Notion, and Vercel while keeping all existing features working.
+
+=========================
+UI REQUIREMENTS
+=========================
+
+Create a modern, elegant, enterprise-grade CRM interface.
+
+Theme:
+- Light theme
+- White background
+- Soft gray surfaces
+- Blue and purple accent colors
+- Glassmorphism where appropriate
+- Rounded corners (16-20px)
+- Soft shadows
+- Smooth gradients
+- Professional typography using Inter font
+- Plenty of whitespace
+- Premium spacing and alignment
+
+=========================
+LAYOUT
+=========================
+
+Create a full dashboard layout consisting of:
+
+• Left collapsible sidebar
+• Top navigation bar
+• Main dashboard content
+• Responsive design
+
+Sidebar should contain:
+
+Dashboard
+All Leads
+Add Lead
+Pipeline
+Calendar
+Reports
+Settings
+
+Use animated icons from Lucide React.
+
+The active page should have an animated glowing indicator.
+
+=========================
+TOP NAVIGATION
+=========================
+
+Include:
+
+Global Search Bar
+
+Notification icon
+
+Dark mode toggle
+
+User Avatar
+
+Breadcrumb
+
+Current Date
+
+Animated hover effects
+
+Sticky navbar
+
+=========================
+STATISTIC CARDS
+=========================
+
+Create beautiful dashboard cards showing
+
+Total Leads
+
+New
+
+Contacted
+
+Proposal Sent
+
+Negotiation
+
+Closed Won
+
+Closed Lost
+
+Each card should contain:
+
+Large number
+
+Animated icon
+
+Small trend indicator
+
+Mini line graph
+
+Gradient background
+
+Hover animation
+
+Lift effect
+
+=========================
+LEADS TABLE
+=========================
+
+Transform the lead table into a professional data table.
+
+Include:
+
+Rounded container
+
+Sticky header
+
+Hover highlight
+
+Status badges
+
+Avatar for owner
+
+Search
+
+Stage filter
+
+Sort
+
+Pagination
+
+Smooth row animation
+
+Beautiful empty state
+
+Loading skeleton
+
+Colored stage badges
+
+Responsive layout
+
+=========================
+LEAD DETAILS
+=========================
+
+Open lead details inside a modern sliding drawer instead of a plain page.
+
+Animate drawer opening.
+
+Group fields into sections:
+
+Basic Info
+
+Business
+
+Sales Details
+
+Notes
+
+Follow Up
+
+=========================
+ADD LEAD FORM
+=========================
+
+Create a beautiful multi-section form.
+
+Use:
+
+Floating labels
+
+Animated inputs
+
+Dropdown animations
+
+Date picker
+
+Validation messages
+
+Required field indicators
+
+Submit button with loading animation
+
+Success toast notification
+
+=========================
+PIPELINE
+=========================
+
+Create an attractive Kanban Board.
+
+Columns:
+
+New
+
+Contacted
+
+Proposal Sent
+
+Negotiation
+
+Closed Won
+
+Closed Lost
+
+Allow drag and drop.
+
+Cards should animate while dragging.
+
+=========================
+CHARTS
+=========================
+
+Add beautiful charts using Recharts.
+
+Include:
+
+Lead Distribution
+
+Budget Analysis
+
+Monthly Leads
+
+Pipeline Funnel
+
+Upcoming Follow-ups
+
+Recent Activity Timeline
+
+=========================
+ANIMATIONS
+=========================
+
+Use Framer Motion throughout the application.
+
+Add:
+
+Fade In
+
+Slide Up
+
+Slide Left
+
+Scale
+
+Bounce
+
+Smooth page transitions
+
+Animated cards
+
+Button ripple
+
+Hover scaling
+
+Card elevation
+
+Skeleton loaders
+
+Animated counters
+
+Progress animations
+
+Micro-interactions
+
+Animated dropdowns
+
+Animated sidebar
+
+Animated modal
+
+Animated drawer
+
+Animated toast
+
+Animated charts
+
+Animated page transitions
+
+=========================
+BUTTONS
+=========================
+
+Every button should have
+
+Hover animation
+
+Click animation
+
+Loading state
+
+Focus state
+
+Ripple effect
+
+=========================
+ICONS
+=========================
+
+Use Lucide React icons everywhere.
+
+Each section should have meaningful icons.
+
+=========================
+RESPONSIVENESS
+=========================
+
+Optimize for
+
+Desktop
+
+Laptop
+
+Tablet
+
+Mobile
+
+Collapse sidebar on smaller screens.
+
+=========================
+CODE QUALITY
+=========================
+
+Do NOT change the business logic.
+
+Do NOT remove any existing features.
+
+Only improve:
+
+UI
+
+UX
+
+Animations
+
+Accessibility
+
+Responsiveness
+
+Performance
+
+Break large components into reusable components if necessary.
+
+=========================
+FINAL RESULT
+=========================
+
+The application should look like a premium enterprise CRM that could be used by a real sales team.
+
+Every screen should feel polished, modern, fast, and visually impressive while preserving all existing functionality.
