@@ -96,7 +96,7 @@ export default function Settings() {
                 <AvatarFallback className="bg-primary/10 text-primary text-2xl font-bold">AS</AvatarFallback>
               </Avatar>
               <div className="flex-1 space-y-1">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground">Alex Sales</h3>
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">Chandru Sales</h3>
                 <p className="text-sm font-medium text-muted-foreground bg-muted inline-flex px-2 py-0.5 rounded-md">Sales Manager</p>
                 <p className="text-sm text-muted-foreground mt-2">alex@acmecorp.com</p>
               </div>

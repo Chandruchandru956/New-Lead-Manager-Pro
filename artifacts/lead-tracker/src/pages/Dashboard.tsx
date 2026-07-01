@@ -103,7 +103,7 @@ export default function Dashboard() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-card p-6 rounded-2xl border shadow-sm"
         >
           <div>
-            <h2 className="text-3xl font-bold tracking-tight mb-1 text-foreground">Good morning, Alex 👋</h2>
+            <h2 className="text-3xl font-bold tracking-tight mb-1 text-foreground">Good morning, Chandru 👋</h2>
             <p className="text-muted-foreground font-medium">
               You have {leads.length} active leads across your pipeline.
             </p>
