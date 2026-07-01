@@ -181,7 +181,7 @@ export function Layout({ children, title }: LayoutProps) {
               <Avatar className="h-8 w-8 ring-2 ring-primary/20 cursor-pointer hover:ring-primary transition-all">
                 <AvatarFallback className="bg-primary/10 text-primary font-semibold text-xs">AS</AvatarFallback>
               </Avatar>
-              <span className="text-sm font-medium hidden sm:block">Alex Sales</span>
+              <span className="text-sm font-medium hidden sm:block">Chandru Sales</span>
             </div>
           </div>
         </header>
