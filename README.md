@@ -148,7 +148,7 @@ You can export all leads as a `.csv` file from the **Settings → Data Managemen
 
 ## 📝 Short Note
 
-Lead Manager Pro started as a straightforward lead-tracking table and evolved into a full enterprise SaaS dashboard. The entire application runs in the browser with no server, no database, and no API keys — making it instantly deployable anywhere static files can be served. The architecture deliberately keeps business logic (hooks, storage, constants) completely separate from the UI layer, so the interface can be restyled or extended without touching a single line of data logic.
+I have faced a problem while adding the lead, the lead doesn't accepts any of the inputs from the user. So, I rebuit the page for a better usage of it. If i had an extra time i would focus on improving the quality of the application. I would refine the UI for better responsiveness. I would also spend time on adding the features like based on the user feedback.
 
 ---
 
